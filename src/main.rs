@@ -1,8 +1,6 @@
 use std::f32::consts::PI;
 
 use bevy::prelude::*;
-use bevy::render::mesh;
-use bevy::render::camera::RenderTarget;
 
 #[derive(Component, Default, Clone, Copy)]
 struct Planet {}
@@ -35,14 +33,14 @@ fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
-    mut images: ResMut<Assets<Image>>,
-    mut texture_atlases: ResMut<Assets<TextureAtlas>>,
+    // mut images: ResMut<Assets<Image>>,
+    // mut texture_atlases: ResMut<Assets<TextureAtlas>>,
     asset_server: Res<AssetServer>,
 ) {
     let sphere_handle = asset_server.load("models/sun/sun.png");
     let earth_handle = asset_server.load("models/earth/earth.png");
     let moon_handle = asset_server.load("models/moon/moon.png");
-    let stars_handle : Handle<Image> = asset_server.load("models/stars/stars.png");
+    //let stars_handle : Handle<Image> = asset_server.load("models/stars/stars.png");
     //let background_texture_atlas = TextureAtlas::from_grid(stars_handle, Vec2::new(1000.0, 1000.0), 1, 1, None, None);
     // let material = materials.add(StandardMaterial {
     //     base_color_texture: Some(stars_handle),
@@ -130,7 +128,7 @@ fn setup(
     ));
 }
 
-fn resize(
+fn _resize(
     keys: Res<Input<KeyCode>>,
     mut satellite: Query<&mut Transform, With<Satellite>>,
     mut planet: Query<&mut Transform, (With<Planet>, Without<Satellite>)>,
